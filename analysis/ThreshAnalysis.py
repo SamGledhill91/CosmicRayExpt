@@ -8,7 +8,7 @@ import argparse
 
 from event import Event, Pulse
 
-pathToFiles = 'C://home/ph18493/data/threshcali'
+pathToFiles = '/home/ph18493/data/threshcali'
 threshIncrement =  100
 
 for filename in os.listdir(pathToFiles):
