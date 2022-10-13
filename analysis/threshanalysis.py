@@ -31,19 +31,19 @@ function_name(sys.argv[1:])
 print(j)
 
 
-# open the file
-ifile = open(args.in_file, 'rb')
-events= pickle.load(ifile)
-n_events= len(events)
+# # open the file
+# ifile = open(args.in_file, 'rb')
+# events= pickle.load(ifile)
+# n_events= len(events)
 
-print("Read {} events from file".format(n_events))
+# print("Read {} events from file".format(n_events))
 
-# example event loop
-count = [0, 0, 0, 0]  # counts per channel
+# # example event loop
+# count = [0, 0, 0, 0]  # counts per channel
 
-for event in events:
-    for pulse in event.pulses:
-        # only count rising edges
-        if pulse.edge == 0:
-            count[pulse.chan] += 1
+# for event in events:
+#     for pulse in event.pulses:
+#         # only count rising edges
+#         if pulse.edge == 0:
+#             count[pulse.chan] += 1
 
