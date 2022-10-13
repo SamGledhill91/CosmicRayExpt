@@ -11,10 +11,11 @@ from event import Event, Pulse
 pathToFiles = '/home/ph18493/data/threshcali'
 threshIncrement =  100
 
+matrix
+
 for filename in os.listdir(pathToFiles):
     f = os.path.join(pathToFiles, filename)
     if os.path.isfile(f):
-
         print(filename.replace('thresh', '').replace('pmt', ',').replace('.pkl', ''))
         ifile = open(f, 'rb')
         events = pickle.load(ifile)
@@ -30,7 +31,14 @@ for filename in os.listdir(pathToFiles):
                 # only count rising edges
                 if pulse.edge == 0:
                     count[pulse.chan] += 1
+        x = filename.replace('thresh', '').replace('pmt', ',').replace('.pkl', '')
+        x.split(",")
+        x = [int(i) for i in x]
+        x.append(count[pulse.chan])
         
+        matrix.append(x)
+        
+print(matrix)        
         print("Counts by channel")
         print("Channel 0 : {} ".format(count[0]))
         print("Channel 1 : {} ".format(count[1]))
