@@ -49,16 +49,38 @@ n_coinc = 0
 for event in events:
     found0 = False
     found1 = False
+    found2 = False
+    found3 = False
     for pulse in event.pulses:
         # only count rising edges
         if pulse.edge==0 and pulse.chan == 0:
             found0 = True
         if pulse.edge==0 and pulse.chan == 1:
             found1 = True
+        if pulse.edge==0 and pulse.chan == 2:
+            found2 = True
+        if pulse.edge==0 and pulse.chan == 1:
+            found3 = True
     if found0 and found1:
-        n_coinc += 1
+        n_coinc01 += 1
+    if found0 and found2:
+        n_coinc02 += 1
+    if found0 and found3:
+        n_coinc03 += 1
+    if found1 and found2:
+        n_coinc12 += 1
+    if found1 and found3:
+        n_coinc13 += 1
+    if found2 and found3:
+        n_coinc23 += 1
             
-print("N (0,1) coincidences : {}".format(n_coinc))
+print("N (0,1) coincidences : {}".format(n_coinc01))
+print("N (0,2) coincidences : {}".format(n_coinc01))
+print("N (0,3) coincidences : {}".format(n_coinc01))
+print("N (1,2) coincidences : {}".format(n_coinc01))
+print("N (1,3) coincidences : {}".format(n_coinc01))
+print("N (2,3) coincidences : {}".format(n_coinc01))
+
 
 # get some pulse time information
 dts = []
