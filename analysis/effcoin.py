@@ -48,7 +48,14 @@ print("Channel 3 : {} ".format(count[3]))
 # now find concidences betwen two channels (0 and 1)
 
 
-cominations = []
+def Err(efficiency,ngiven):
+	"""
+	Calculates the error from the binomial assumption
+	"""
+	error = math.sqrt((efficiency*(1-efficiency))/ngiven
+
+#all distinct permutations of channel x given coincidence between y and z for 0-3			  
+Combinations = [["12","13","23"],["02","03","23"],["01","03","13"],["01","02","12"],]
 
 n_coinc01 = n_coinc02 = n_coinc03 = n_coinc12 = n_coinc13 = n_coinc23 = 0
 n_coinc012 = n_coinc013 = n_coinc021 = n_coinc023 = n_coinc031 = n_coinc032 = n_coinc120 = n_coinc123 = n_coinc130 = n_coinc132 = n_coinc230 = n_coinc231 = 0
@@ -103,6 +110,12 @@ for event in events:
 		n_coinc230 +=1.
 	if found1:
 		n_coinc231 +=1.
+
+
+for i in Combinations:
+	for j in Combinations[i]:
+		n2 = "n_coinc%s
+		n3 = 
 
 P2g01 = n_coinc012/n_coinc01
 P2g03 = n_coinc032/n_coinc03
@@ -159,31 +172,3 @@ for i in range(12):
 	error = errors[i]
 	print("{}={} with error = {}".format(name, probability,error))
 
-# get some pulse time information
-dts = []
-for event in events:
-    found0 = False
-    found1 = False
-    time0 = 0.
-    time1 = 0.
-    for pulse in event.pulses:
-        # only count rising edges
-        if pulse.edge==0 and pulse.chan == 0:
-            found0 = True
-            time0 = pulse.time
-        if pulse.edge==0 and pulse.chan == 1:
-            found1 = True
-            time1 = pulse.time
-    if found0 and found1:
-        dts.append(abs(time1-time0))
-
-# print some summary info
-print("Mean delta-t : {}".format(np.mean(dts)))
-print("Std dev delta-t : {}".format(np.std(dts)))
-
-bins = np.linspace(0.,2000., 100)
-plt.hist(dts, bins)
-plt.yscale('log')
-plt.ylabel("N")
-plt.xlabel(r'$\Delta t$')
-plt.show()
